@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>작성자: {{ post.author }}</p>
+    <p>{{ post.content }}</p>
+
+    {% if post.admin_comment %}
+        <p><strong>관리자 댓글:</strong> {{ post.admin_comment }}</p>
+    {% endif %}
+
+    <h3>💬 댓글</h3>
+    <ul>
+        {% for comment in post.comments %}
+            <li>{{ comment.content }} ({{ comment.created_at.strftime('%Y-%m-%d %H:%M') }})</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post">
+        <textarea name="comment" placeholder="댓글을 입력하세요" required></textarea><br>
+        <button type="submit">댓글 작성</button>
+    </form>
+
+    <br><a href="/">← 목록으로 돌아가기</a>
+</body>
+</html>
+
+
